@@ -19,6 +19,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        fontFamily: {
+          sans: ["var(--font-name)"],
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

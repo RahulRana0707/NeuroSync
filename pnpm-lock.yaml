@@ -20,6 +20,12 @@ importers:
 
   apps/docs:
     dependencies:
+      '@neurosync/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@next/font':
+        specifier: ^14.2.7
+        version: 14.2.7(next@14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.1.1
         version: 2.1.1(@types/react-dom@18.2.19)(@types/react@18.2.61)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -29,15 +35,15 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.1.0
         version: 1.1.0(@types/react@18.2.61)(react@18.3.1)
-      '@repo/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      framer-motion:
+        specifier: ^11.3.31
+        version: 11.3.31(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lucide-react:
         specifier: ^0.436.0
         version: 0.436.0(react@18.3.1)
@@ -60,13 +66,13 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.10(ts-node@10.9.1(@types/node@20.11.24)(typescript@5.3.3)))
     devDependencies:
-      '@repo/eslint-config':
+      '@neurosync/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@repo/tailwind-config':
+      '@neurosync/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
-      '@repo/typescript-config':
+      '@neurosync/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@types/node':
@@ -99,9 +105,12 @@ importers:
 
   apps/web:
     dependencies:
-      '@repo/ui':
+      '@neurosync/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@next/font':
+        specifier: ^14.2.7
+        version: 14.2.7(next@14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       next:
         specifier: 14.2.6
         version: 14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -112,10 +121,13 @@ importers:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
     devDependencies:
-      '@repo/eslint-config':
+      '@neurosync/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@repo/typescript-config':
+      '@neurosync/tailwind-config':
+        specifier: workspace:*
+        version: link:../../packages/tailwind-config
+      '@neurosync/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@types/node':
@@ -127,12 +139,21 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.2.19
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.20(postcss@8.4.41)
       eslint:
         specifier: ^8
         version: 8.57.0
       eslint-config-next:
         specifier: 14.2.6
         version: 14.2.6(eslint@8.57.0)(typescript@5.3.3)
+      postcss:
+        specifier: ^8.4.41
+        version: 8.4.41
+      tailwindcss:
+        specifier: ^3.4.10
+        version: 3.4.10(ts-node@10.9.1(@types/node@20.11.24)(typescript@5.3.3))
       typescript:
         specifier: ^5
         version: 5.3.3
@@ -175,13 +196,13 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@repo/eslint-config':
+      '@neurosync/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@repo/tailwind-config':
+      '@neurosync/tailwind-config':
         specifier: workspace:*
         version: link:../tailwind-config
-      '@repo/typescript-config':
+      '@neurosync/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@turbo/gen':
@@ -411,6 +432,11 @@ packages:
 
   '@next/eslint-plugin-next@14.2.6':
     resolution: {integrity: sha512-d3+p4AjIYmhqzYHhhmkRYYN6ZU35TwZAKX08xKRfnHkz72KhWL2kxMFsDptpZs5e8bBGdepn7vn1+9DaF8iX+A==}
+
+  '@next/font@14.2.7':
+    resolution: {integrity: sha512-0WvqMw4Ynwtj5ftyKmnpVH3tam5U/hg0D9EPdbMlv1hvoeSyAK+kkxQkCSEH8G2Jgt5/lTk6FLdqZ+5gnw+0aw==}
+    peerDependencies:
+      next: '*'
 
   '@next/swc-darwin-arm64@14.2.6':
     resolution: {integrity: sha512-BtJZb+hYXGaVJJivpnDoi3JFVn80SHKCiiRUW3kk1SY6UCUy5dWFFSbh+tGi5lHAughzeduMyxbLt3pspvXNSg==}
@@ -1738,6 +1764,20 @@ packages:
 
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
+
+  framer-motion@11.3.31:
+    resolution: {integrity: sha512-Xmxs08WBXnc2tNzNZbFSpquI33lvleJg4Y+hmZ+vFkn+laN9ZnR3gbZnNGKDtuz7c/x3u8dLg05OU3EhLobCsg==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   fs-extra@10.1.0:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
@@ -3555,6 +3595,10 @@ snapshots:
     dependencies:
       glob: 10.3.10
 
+  '@next/font@14.2.7(next@14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+    dependencies:
+      next: 14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+
   '@next/swc-darwin-arm64@14.2.6':
     optional: true
 
@@ -5203,6 +5247,13 @@ snapshots:
       signal-exit: 4.1.0
 
   fraction.js@4.3.7: {}
+
+  framer-motion@11.3.31(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      tslib: 2.6.2
+    optionalDependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   fs-extra@10.1.0:
     dependencies:
