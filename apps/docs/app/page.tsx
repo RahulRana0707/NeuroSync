@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggler } from "@/components/ui/theme-toggler";
 import { cn } from "@/lib/utils";
 
+import { Sparkles, ArrowRight } from "lucide-react";
 export default function Home() {
   return (
     <>
@@ -16,19 +17,22 @@ export default function Home() {
           experience.
         </h3>
         <div className="flex gap-4">
+          <a href={process.env.MAIN_URL} className="">
+            <Button
+              variant="default"
+              className="py-6 rounded-xl font-medium text-base"
+              size={"lg"}
+            >
+              Play Now for Free <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </a>
           <Button
-            variant="default"
-            className="font-medium text-base text-pretty"
+            variant="secondary"
             size={"lg"}
+            className="py-6 rounded-xl font-medium text-lg text-pretty"
           >
-            Play Now for Free →
-          </Button>
-          <Button
-            variant="ghost"
-            size={"lg"}
-            className="font-medium text-base text-pretty"
-          >
-            ✨ Discover NeuroSync Features →
+            <Sparkles className="mr-2 h-5 w-5 fill-violet-800" /> Discover
+            NeuroSync Features <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
         <GridPattern

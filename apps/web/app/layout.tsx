@@ -1,8 +1,12 @@
+import { ThemeProvider } from "@/provider/theme-provider";
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from "@next/font/google";
+import { Lexend } from "@next/font/google";
 
-export const inter = Inter({ subsets: ["latin"] });
+const lexend = Lexend({
+  subsets: ["latin"],
+  weight: ["400", "100", "200", "300", "500", "800", "900", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={lexend.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

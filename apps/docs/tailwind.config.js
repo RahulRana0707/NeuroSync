@@ -1,2 +1,2 @@
-const tailwindConfig = require("@repo/tailwind-config/tailwind.config.js");
+const tailwindConfig = require("@neurosync/tailwind-config/tailwind.config.js");
 module.exports = tailwindConfig;

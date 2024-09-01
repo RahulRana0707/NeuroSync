@@ -1,3 +1,9 @@
+import { GameConfigurationForm } from "@/components/game-configuration-form";
+
 export default function Home() {
-  return <div className="bg-red-800">helo0</div>;
+  return (
+    <div className="w-screen min-h-screen flex items-center justify-center">
+      <GameConfigurationForm />
+    </div>
+  );
 }
