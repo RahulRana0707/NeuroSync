@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@/provider/theme-provider";
 import type { Metadata } from "next";
 import "./globals.css";
-import { Lexend } from "@next/font/google";
+import { Lexend } from "next/font/google";
 
 const lexend = Lexend({
   subsets: ["latin"],
