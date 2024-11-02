@@ -1,7 +1,7 @@
 import React from "react";
 
-const MathcingPairBoard = () => {
-  return <div>MathcingPairBoard</div>;
+const MatchingPairsBoard = () => {
+  return <div>MatchingPairsBoard</div>;
 };
 
-export default MathcingPairBoard;
+export default MatchingPairsBoard;
