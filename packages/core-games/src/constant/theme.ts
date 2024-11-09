@@ -1,0 +1,211 @@
+import { Theme } from "@/types/theme";
+
+export const SLATE_THEME: Theme = {
+  backgroundColor: "linear-gradient(135deg, #1e1e2f 0%, #383859 100%)",
+  textColor: "#ffffff",
+  fontFamily: "Lexend, sans-serif",
+  isLightContrast: false,
+  borderColor: "#2a2a3b",
+  accentColor: "#4d4d80",
+  boxShadowColor: "#14141e",
+  shades: {
+    100: "#f4f4f8",
+    200: "#e1e1eb",
+    300: "#c2c2d2",
+    400: "#a4a4b9",
+    500: "#8585a1",
+    600: "#676785",
+    700: "#4f4f66",
+    800: "#383859",
+    900: "#1e1e2f",
+  },
+};
+
+export const OCEAN_THEME: Theme = {
+  backgroundColor: "linear-gradient(135deg, #e0f7fa 0%, #00acc1 100%)",
+  textColor: "#006064",
+  fontFamily: "Roboto, sans-serif",
+  isLightContrast: true,
+  borderColor: "#00acc1",
+  accentColor: "#00838f",
+  boxShadowColor: "#b2ebf2",
+  shades: {
+    100: "#e0f7fa",
+    200: "#b2ebf2",
+    300: "#80deea",
+    400: "#4dd0e1",
+    500: "#26c6da",
+    600: "#00bcd4",
+    700: "#00acc1",
+    800: "#0097a7",
+    900: "#006064",
+  },
+};
+
+export const SUNSET_THEME: Theme = {
+  backgroundColor: "linear-gradient(135deg, #ffecb3 0%, #ff8a65 100%)",
+  textColor: "#e65100",
+  fontFamily: "Lexend, sans-serif",
+  isLightContrast: true,
+  borderColor: "#ff6d00",
+  accentColor: "#ff8a65",
+  boxShadowColor: "#ffcc80",
+  shades: {
+    100: "#ffecb3",
+    200: "#ffe0b2",
+    300: "#ffcc80",
+    400: "#ffb74d",
+    500: "#ffa726",
+    600: "#ff9800",
+    700: "#fb8c00",
+    800: "#f57c00",
+    900: "#e65100",
+  },
+};
+
+export const FOREST_THEME: Theme = {
+  backgroundColor: "linear-gradient(135deg, #66bb6a 0%, #2e7d32 100%)",
+  textColor: "#ffffff",
+  fontFamily: "Inter, sans-serif",
+  isLightContrast: false,
+  borderColor: "#1b5e20",
+  accentColor: "#66bb6a",
+  boxShadowColor: "#a5d6a7",
+  shades: {
+    100: "#e8f5e9",
+    200: "#c8e6c9",
+    300: "#a5d6a7",
+    400: "#81c784",
+    500: "#66bb6a",
+    600: "#4caf50",
+    700: "#388e3c",
+    800: "#2e7d32",
+    900: "#1b5e20",
+  },
+};
+
+export const ROSE_THEME: Theme = {
+  backgroundColor: "linear-gradient(135deg, #fce4ec 0%, #ec407a 100%)",
+  textColor: "#ad1457",
+  fontFamily: "Lexend, sans-serif",
+  isLightContrast: true,
+  borderColor: "#f06292",
+  accentColor: "#ec407a",
+  boxShadowColor: "#f8bbd0",
+  shades: {
+    100: "#fce4ec",
+    200: "#f8bbd0",
+    300: "#f48fb1",
+    400: "#f06292",
+    500: "#ec407a",
+    600: "#e91e63",
+    700: "#d81b60",
+    800: "#c2185b",
+    900: "#ad1457",
+  },
+};
+
+export const MIDNIGHT_THEME: Theme = {
+  backgroundColor: "linear-gradient(135deg, #0d1b2a 0%, #415a77 100%)",
+  textColor: "#e0e1dd",
+  fontFamily: "Roboto, Lexend, sans-serif",
+  isLightContrast: false,
+  borderColor: "#1b263b",
+  accentColor: "#415a77",
+  boxShadowColor: "#778da9",
+  shades: {
+    100: "#e0e1dd",
+    200: "#c2c3c1",
+    300: "#a4a5a5",
+    400: "#858789",
+    500: "#66696d",
+    600: "#4f4f5d",
+    700: "#2a2e36",
+    800: "#1b263b",
+    900: "#0d1b2a",
+  },
+};
+
+export const TROPICAL_THEME: Theme = {
+  backgroundColor: "linear-gradient(135deg, #ffe57f 0%, #ff8f00 100%)",
+  textColor: "#004d40",
+  fontFamily: "Lexend, sans-serif",
+  isLightContrast: true,
+  borderColor: "#ff6f00",
+  accentColor: "#ff8f00",
+  boxShadowColor: "#ffd54f",
+  shades: {
+    100: "#fff9c4",
+    200: "#fff59d",
+    300: "#fff176",
+    400: "#ffee58",
+    500: "#ffeb3b",
+    600: "#fdd835",
+    700: "#fbc02d",
+    800: "#f9a825",
+    900: "#ff8f00",
+  },
+};
+
+export const ROYAL_THEME: Theme = {
+  backgroundColor: "linear-gradient(135deg, #7e57c2 0%, #512da8 100%)",
+  textColor: "#e1bee7",
+  fontFamily: "Roboto, Lexend, sans-serif",
+  isLightContrast: false,
+  borderColor: "#673ab7",
+  accentColor: "#7e57c2",
+  boxShadowColor: "#9575cd",
+  shades: {
+    100: "#e1bee7",
+    200: "#ce93d8",
+    300: "#ba68c8",
+    400: "#ab47bc",
+    500: "#9c27b0",
+    600: "#8e24aa",
+    700: "#7b1fa2",
+    800: "#6a1b9a",
+    900: "#512da8",
+  },
+};
+
+export const NEON_THEME: Theme = {
+  backgroundColor: "linear-gradient(135deg, #18ffff 0%, #1a237e 100%)",
+  textColor: "#00e5ff",
+  fontFamily: "Inter, sans-serif",
+  isLightContrast: false,
+  borderColor: "#2962ff",
+  accentColor: "#18ffff",
+  boxShadowColor: "#80d8ff",
+  shades: {
+    100: "#e0f7fa",
+    200: "#b2ebf2",
+    300: "#80deea",
+    400: "#4dd0e1",
+    500: "#26c6da",
+    600: "#00bcd4",
+    700: "#00acc1",
+    800: "#0097a7",
+    900: "#006064",
+  },
+};
+
+export const LIME_THEME: Theme = {
+  backgroundColor: "linear-gradient(135deg, #d4e157 0%, #33691e 100%)",
+  textColor: "#33691e",
+  fontFamily: "Lexend, sans-serif",
+  isLightContrast: true,
+  borderColor: "#cddc39",
+  accentColor: "#afb42b",
+  boxShadowColor: "#dce775",
+  shades: {
+    100: "#f4ff81",
+    200: "#dce775",
+    300: "#c0ca33",
+    400: "#afb42b",
+    500: "#9e9d24",
+    600: "#827717",
+    700: "#6f690c",
+    800: "#5d5206",
+    900: "#33691e",
+  },
+};

@@ -1,0 +1,15 @@
+.time-mode-details-panel {
+  padding: 1rem;
+  height: 800px;
+  box-shadow: 0 8px 12px 0 var(--box-shadow-color);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  border-radius: 0.875rem;
+  border-right: 2px solid var(--border-color);
+}
+
+.time-mode-main-panel {
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+}

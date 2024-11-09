@@ -12,6 +12,10 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.6",
+    "framer-motion": "^11.3.31",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -25,6 +29,7 @@
     "@storybook/react": "8.4.1",
     "@storybook/react-vite": "8.4.1",
     "@storybook/test": "8.4.1",
+    "@storybook/theming": "^8.4.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
