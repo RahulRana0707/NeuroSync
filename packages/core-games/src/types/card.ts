@@ -4,15 +4,16 @@ enum CardStatus {
   MATCHED = "MATCHED",
 }
 
-type cardId = string;
+type CardId = string;
 
 type TCardStatus = keyof typeof CardStatus;
 
 type Card = {
-  id: cardId;
+  id: CardId;
+  sourceId: string;
   src: string;
   status: CardStatus;
 };
 
-export type { cardId, Card, TCardStatus };
+export type { CardId, Card, TCardStatus };
 export { CardStatus };

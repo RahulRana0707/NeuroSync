@@ -1,6 +1,7 @@
 export enum CardSize {
-  FiveByFour = "5 x 4",
-  FiveByFive = "5 x 5",
-  FiveBySix = "5 x 6",
-  FiveBySeven = "5 x 7",
+  FourByFour = "4 x 4", // 16 cards (even)
+  FourByFive = "4 x 5", // 20 cards (even)
+  FiveByFour = "5 x 4", // 20 cards (even)
+  SixByFive = "6 x 5", // 30 cards (even)
+  SixBySix = "6 x 6", // 36 cards (even)
 }

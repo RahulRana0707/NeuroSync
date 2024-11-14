@@ -21,7 +21,7 @@ export const SoloMatchingPairsBoard: Story = {
   args: {
     mode: Mode.CLASSIC,
     playerType: PlayerType.SOLO,
-    cardSize: CardSize.FiveByFour,
+    cardSize: CardSize.SixBySix,
     cardCategory: CardCategory.FOOD,
     theme: SLATE_THEME,
   },
