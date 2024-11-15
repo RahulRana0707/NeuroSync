@@ -1,8 +1,14 @@
 import { CardCategory } from "@/constant/card-category";
 import { CardSize } from "@/constant/card-size";
+import {
+  CONSECUTIVE_MATCH_POINT,
+  MISMATCH_MINUS_POINT,
+} from "@/constant/score-system";
 import { useMatchingPairsCards } from "@/hooks/use-matching-pairs-cards";
 import { Card, CardId, CardStatus } from "@/types/card";
-import { useCallback, useState } from "react";
+import { getBaseScore } from "@/utils/get-base-score";
+import { getGridSize } from "@/utils/get-grid-size";
+import { useCallback, useMemo, useState } from "react";
 
 interface SoloClassicMode {
   cardSize: CardSize;
@@ -19,9 +25,43 @@ export const useSoloClassicMode = ({
   revealCard,
   hideCard,
 }: SoloClassicMode) => {
-  const [cards, setCards] = useMatchingPairsCards({ cardCategory, cardSize });
+  const { cards, setCards, populateCards } = useMatchingPairsCards({
+    cardCategory,
+    cardSize,
+  });
   const [selectedCardId, setSelectedCardId] = useState<string | null>();
   const [isCheckingMatch, setIsCheckingMatch] = useState(false);
+  const [moves, setMoves] = useState<number>(0);
+  const [score, setScore] = useState<number>(getBaseScore(cardSize));
+  const [consecutiveMatchCount, setConsecutiveMatchCount] = useState(0);
+  const [matchedCardIds, setMatchedCardIds] = useState<CardId[]>([]);
+
+  const progress = useMemo(() => {
+    const { rows, columns } = getGridSize(cardSize);
+    const totalPairs = (rows * columns) / 2;
+    const totalPairsMatched = matchedCardIds.length / 2;
+    return Math.ceil((totalPairsMatched / totalPairs) * 100 * 100) / 100; // rounding to 2 decimal places
+  }, [cardSize, matchedCardIds.length]);
+
+  const incrementMoves = useCallback(() => {
+    setMoves((prev) => prev + 1);
+  }, []);
+
+  const resetSelection = useCallback(() => setSelectedCardId(null), []);
+
+  const calculateScore = useCallback(
+    (wasMatched: boolean) => {
+      const consecutiveCount = wasMatched ? consecutiveMatchCount + 1 : 0;
+      setConsecutiveMatchCount(consecutiveCount);
+      if (wasMatched) {
+        if (consecutiveCount > 1)
+          setScore((prevScore) => prevScore + CONSECUTIVE_MATCH_POINT);
+      } else {
+        setScore((prevScore) => prevScore - MISMATCH_MINUS_POINT);
+      }
+    },
+    [consecutiveMatchCount]
+  );
 
   const onCardChange = useCallback(
     (cardId: CardId, card: Card) => {
@@ -33,7 +73,6 @@ export const useSoloClassicMode = ({
     },
     [setCards]
   );
-  const resetSelection = useCallback(() => setSelectedCardId(null), []);
 
   const onFirstCardSelection = useCallback(
     (cardId: CardId) => {
@@ -66,10 +105,16 @@ export const useSoloClassicMode = ({
           status: CardStatus.MATCHED,
         },
       }));
+      calculateScore(true);
       resetSelection();
+      setMatchedCardIds((prevMatchedCardIds) => [
+        ...prevMatchedCardIds,
+        firstCard.id,
+        secondCard.id,
+      ]);
       await new Promise((resolve) => setTimeout(resolve, TIMER_TO_UNHIDE_CARD));
     },
-    [resetSelection, setCards]
+    [calculateScore, resetSelection, setCards]
   );
 
   const onCardsUnmatched = useCallback(
@@ -95,8 +140,9 @@ export const useSoloClassicMode = ({
         },
       }));
       resetSelection();
+      calculateScore(false);
     },
-    [hideCard, resetSelection, setCards]
+    [calculateScore, hideCard, resetSelection, setCards]
   );
 
   const onSecondCardSelection = useCallback(
@@ -137,6 +183,9 @@ export const useSoloClassicMode = ({
 
   const onCardClick = useCallback(
     (cardId: CardId) => {
+      if (isCheckingMatch || cards[cardId].status === CardStatus.MATCHED)
+        return;
+      incrementMoves();
       if (selectedCardId) {
         if (selectedCardId === cardId) return;
         onSecondCardSelection(cardId);
@@ -144,8 +193,25 @@ export const useSoloClassicMode = ({
         onFirstCardSelection(cardId);
       }
     },
-    [selectedCardId, onSecondCardSelection, onFirstCardSelection]
+    [
+      isCheckingMatch,
+      cards,
+      incrementMoves,
+      selectedCardId,
+      onSecondCardSelection,
+      onFirstCardSelection,
+    ]
   );
 
-  return { cards, onCardClick, isCheckingMatch };
+  const onRestart = useCallback(async () => {
+    await populateCards();
+    setSelectedCardId(null);
+    setIsCheckingMatch(false);
+    setConsecutiveMatchCount(0);
+    setMoves(0);
+    setScore(getBaseScore(cardSize));
+    setMatchedCardIds([]);
+  }, [cardSize, populateCards]);
+
+  return { cards, onCardClick, moves, score, onRestart, progress };
 };

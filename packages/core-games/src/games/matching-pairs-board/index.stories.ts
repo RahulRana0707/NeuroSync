@@ -4,7 +4,7 @@ import { Mode } from "@/constant/mode";
 import { PlayerType } from "@/constant/player-type";
 import { CardSize } from "@/constant/card-size";
 import { CardCategory } from "@/constant/card-category";
-import { SLATE_THEME } from "@/constant/theme";
+import { NEON_PURPLE_THEME } from "@/constant/theme";
 
 const meta: Meta<typeof MatchingPairsBoard> = {
   title: "Games/Matching Pairs Board",
@@ -23,6 +23,6 @@ export const SoloMatchingPairsBoard: Story = {
     playerType: PlayerType.SOLO,
     cardSize: CardSize.SixBySix,
     cardCategory: CardCategory.FOOD,
-    theme: SLATE_THEME,
+    theme: NEON_PURPLE_THEME,
   },
 };

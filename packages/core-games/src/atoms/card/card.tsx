@@ -26,7 +26,6 @@ export const Card = forwardRef<CardRef, CardProps>(
         scope.current,
         {
           rotateY: [0, 180],
-          backgroundColor: "transparent",
         },
         {
           duration: 0.6,
@@ -40,7 +39,6 @@ export const Card = forwardRef<CardRef, CardProps>(
         scope.current,
         {
           rotateY: [180, 0],
-          backgroundColor: "",
         },
         {
           duration: 0.6,

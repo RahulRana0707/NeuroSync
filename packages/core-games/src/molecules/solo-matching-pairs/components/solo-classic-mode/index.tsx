@@ -9,6 +9,9 @@ import GridCard, { type CardRef } from "@/atoms/card";
 import { CardId, CardStatus } from "@/types/card";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSoloClassicMode } from "./use-solo-classic-mode";
+import DetailsPanel from "../details-panel";
+import { MATCHING_PAIRS } from "@/constant/games";
+import { Mode } from "@/constant/mode";
 
 export interface SoloClassicModeProps {
   cardSize: CardSize;
@@ -40,6 +43,8 @@ const cardVariants = {
   }),
 };
 
+const GAME_DETAILS = MATCHING_PAIRS[Mode.CLASSIC];
+
 const SoloClassicMode = ({ cardSize, cardCategory }: SoloClassicModeProps) => {
   const cardsRefs = useRef<Record<CardId, CardRef>>({});
 
@@ -59,20 +64,28 @@ const SoloClassicMode = ({ cardSize, cardCategory }: SoloClassicModeProps) => {
     }
   }, []);
 
-  const { cards, onCardClick, isCheckingMatch } = useSoloClassicMode({
-    cardCategory,
-    cardSize,
-    revealCard,
-    hideCard,
-  });
+  const { cards, onCardClick, moves, score, progress, onRestart } =
+    useSoloClassicMode({
+      cardCategory,
+      cardSize,
+      revealCard,
+      hideCard,
+    });
 
   const { rows, columns } = useMemo(() => getGridSize(cardSize), [cardSize]);
 
   return (
     <>
-      <aside className="classic-mode-details-panel">
-        <h1>Solo Matching Pairs Board details panel</h1>
-      </aside>
+      <DetailsPanel
+        key="solo-classic-details-panel"
+        title={GAME_DETAILS.title}
+        gameName={GAME_DETAILS.gameName}
+        description={GAME_DETAILS.description}
+        score={score}
+        movesCount={moves}
+        progress={progress}
+        onRestart={onRestart}
+      />
       <main className="classic-mode-main-panel">
         <motion.div
           className="matching-pairs-grid"
@@ -104,9 +117,7 @@ const SoloClassicMode = ({ cardSize, cardCategory }: SoloClassicModeProps) => {
                   }}
                   className="matching-pairs-grid-cell"
                   onClick={() => {
-                    if (!isCheckingMatch) {
-                      onCardClick(cardId);
-                    }
+                    onCardClick(cardId);
                   }}
                   aria-details={cardId}
                 >
