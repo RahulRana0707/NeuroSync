@@ -12,6 +12,7 @@
   padding: 1rem;
   display: grid;
   place-items: center;
+  user-select: none;
 }
 
 .matching-pairs-grid {
