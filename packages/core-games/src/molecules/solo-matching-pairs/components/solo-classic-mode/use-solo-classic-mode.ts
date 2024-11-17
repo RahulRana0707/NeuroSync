@@ -36,12 +36,20 @@ export const useSoloClassicMode = ({
   const [consecutiveMatchCount, setConsecutiveMatchCount] = useState(0);
   const [matchedCardIds, setMatchedCardIds] = useState<CardId[]>([]);
 
-  const progress = useMemo(() => {
+  const totalPairs: number = useMemo(() => {
     const { rows, columns } = getGridSize(cardSize);
-    const totalPairs = (rows * columns) / 2;
+    return (rows * columns) / 2;
+  }, [cardSize]);
+
+  const isGameComplete = useMemo(
+    () => matchedCardIds.length / 2 === totalPairs,
+    [totalPairs, matchedCardIds.length]
+  );
+
+  const progress = useMemo(() => {
     const totalPairsMatched = matchedCardIds.length / 2;
     return Math.ceil((totalPairsMatched / totalPairs) * 100 * 100) / 100; // rounding to 2 decimal places
-  }, [cardSize, matchedCardIds.length]);
+  }, [matchedCardIds.length, totalPairs]);
 
   const incrementMoves = useCallback(() => {
     setMoves((prev) => prev + 1);
@@ -213,5 +221,13 @@ export const useSoloClassicMode = ({
     setMatchedCardIds([]);
   }, [cardSize, populateCards]);
 
-  return { cards, onCardClick, moves, score, onRestart, progress };
+  return {
+    cards,
+    onCardClick,
+    moves,
+    score,
+    onRestart,
+    progress,
+    isGameComplete,
+  };
 };

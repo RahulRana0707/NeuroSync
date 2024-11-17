@@ -1,0 +1,77 @@
+:root {
+  --neuro-sync-primary: #3498db;
+  --neuro-sync-secondary: #2ecc71;
+  --neuro-sync-text: #ffffff;
+  --neuro-sync-outline: #34495e;
+  --neuro-sync-font-family: "Poppins", sans-serif;
+}
+
+.neuro-sync-button {
+  font-family: var(--font-family, var(--neuro-sync-font-family));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.neuro-sync-button:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.neuro-sync-button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.neuro-sync-button-primary {
+  background-color: var(--shades-900, var(--neuro-sync-primary));
+  color: var(--shades-100, var(--neuro-sync-text));
+  border: none;
+}
+
+.neuro-sync-button-primary:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--shades-900, var(--neuro-sync-primary)) 80%,
+    black
+  );
+}
+
+.neuro-sync-button-secondary {
+  background-color: var(--shades-100, var(--neuro-sync-secondary));
+  color: var(--shades-900, var(--neuro-sync-text));
+  border: none;
+}
+
+.neuro-sync-button-secondary:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--shades-100, var(--neuro-sync-secondary)) 80%,
+    black
+  );
+}
+
+.neuro-sync-button-outline {
+  background-color: transparent;
+  color: var(--shades-900, var(--neuro-sync-outline));
+  border: 2px solid var(--shades-300, var(--neuro-sync-outline));
+}
+
+.neuro-sync-button-outline:hover {
+  background-color: var(--shades-100, var(--neuro-sync-outline));
+  color: var(--shades-800, var(--neuro-sync-text));
+}
+
+.neuro-sync-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

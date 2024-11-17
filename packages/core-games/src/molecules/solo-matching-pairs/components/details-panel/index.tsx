@@ -2,6 +2,7 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import "./index.css";
 import ProgressBar from "@/atoms/progress-bar";
+import { Button } from "@/atoms/button";
 
 interface DetailsPanelProps {
   title: string;
@@ -76,9 +77,9 @@ const DetailsPanel: FC<DetailsPanelProps> = ({
             <span>Progress: {progress}%</span>
             <ProgressBar progress={progress} />
           </div>
-          <button className="details-panel-button" onClick={onRestart}>
+          <Button variant="secondary" onClick={onRestart}>
             Restart Game
-          </button>
+          </Button>
         </div>
       </motion.div>
     </motion.aside>

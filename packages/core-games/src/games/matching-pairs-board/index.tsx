@@ -32,12 +32,14 @@ const MatchingPairsBoard = ({
   if (playerType === PlayerType.SOLO) {
     return (
       <Suspense fallback={<Loader />}>
-        <SoloMatchingPairsBoard
-          cardCategory={cardCategory}
-          theme={theme}
-          mode={mode}
-          cardSize={cardSize}
-        />
+        <div style={{ width: "100%", height: "800px" }}>
+          <SoloMatchingPairsBoard
+            cardCategory={cardCategory}
+            theme={theme}
+            mode={mode}
+            cardSize={cardSize}
+          />
+        </div>
       </Suspense>
     );
   }

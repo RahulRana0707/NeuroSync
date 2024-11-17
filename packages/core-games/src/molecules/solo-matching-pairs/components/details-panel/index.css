@@ -54,20 +54,3 @@
   display: grid;
   gap: 0.5rem;
 }
-
-.details-panel-button {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background-color: var(--shades-100);
-  color: var(--shades-900);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.details-panel-button:hover {
-  background-color: var(--shades-200);
-}

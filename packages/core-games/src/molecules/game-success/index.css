@@ -1,0 +1,109 @@
+/* General Styles */
+.game-success-overlay {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  background: var(--shades-500, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.game-success-container {
+  background: var(--shades-100, #fff);
+  width: 60%;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px var(--box-shadow-color, rgba(0, 0, 0, 0.25));
+  overflow: hidden;
+}
+
+.game-success-content {
+  display: grid;
+  grid-template-columns: repeat(auto);
+  place-items: center;
+  gap: 2rem;
+}
+
+.game-success-header {
+  display: grid;
+  grid-template-columns: repeat(auto);
+  place-items: center;
+  gap: 0.5rem;
+}
+
+.heading-primary {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--shades-900, #1a1a1a);
+  margin: 0;
+}
+
+.text-muted {
+  color: var(--shades-700, #666);
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.game-stats {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.5rem;
+}
+
+.game-stat {
+  display: grid;
+  grid-template-columns: auto;
+  place-items: center;
+  grid-template-rows: auto auto;
+  gap: 0.5rem;
+  grid-template-areas:
+    "icon value"
+    "moves moves";
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--shades-900, #1a1a1a);
+  grid-area: value;
+}
+
+.stat-label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--shades-700, #666);
+  grid-area: moves;
+  margin: 0px;
+}
+
+.stars {
+  display: grid;
+  place-items: center;
+  grid-template-columns: auto auto auto;
+}
+
+.game-actions {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.5rem;
+}
+
+.icon-small {
+  grid-area: icon;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon-large {
+  width: 3rem;
+  height: 3rem;
+}
+
+.icon-yellow {
+  color: #fbbf24;
+}
+
+.icon-primary {
+  color: #3b82f6;
+}

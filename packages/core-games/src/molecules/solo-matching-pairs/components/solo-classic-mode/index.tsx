@@ -12,6 +12,7 @@ import { useSoloClassicMode } from "./use-solo-classic-mode";
 import DetailsPanel from "../details-panel";
 import { MATCHING_PAIRS } from "@/constant/games";
 import { Mode } from "@/constant/mode";
+import { GameSuccess } from "@/molecules/game-success";
 
 export interface SoloClassicModeProps {
   cardSize: CardSize;
@@ -64,91 +65,108 @@ const SoloClassicMode = ({ cardSize, cardCategory }: SoloClassicModeProps) => {
     }
   }, []);
 
-  const { cards, onCardClick, moves, score, progress, onRestart } =
-    useSoloClassicMode({
-      cardCategory,
-      cardSize,
-      revealCard,
-      hideCard,
-    });
+  const {
+    cards,
+    onCardClick,
+    moves,
+    score,
+    progress,
+    isGameComplete,
+    onRestart,
+  } = useSoloClassicMode({
+    cardCategory,
+    cardSize,
+    revealCard,
+    hideCard,
+  });
 
   const { rows, columns } = useMemo(() => getGridSize(cardSize), [cardSize]);
 
   return (
-    <>
-      <DetailsPanel
-        key="solo-classic-details-panel"
-        title={GAME_DETAILS.title}
-        gameName={GAME_DETAILS.gameName}
-        description={GAME_DETAILS.description}
-        score={score}
-        movesCount={moves}
-        progress={progress}
-        onRestart={onRestart}
-      />
-      <main className="classic-mode-main-panel">
-        <motion.div
-          className="matching-pairs-grid"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          style={{
-            gridTemplateColumns: `repeat(${columns}, 1fr)`,
-            gridTemplateRows: `repeat(${rows}, 1fr)`,
-          }}
-        >
-          {Object.keys(cards).map((cardId, i) => {
-            const cardStatus = cards[cardId].status;
-            const showImage =
-              cardStatus === CardStatus.SELECTED ||
-              cardStatus === CardStatus.MATCHED;
-            return (
+    <div
+      className={`solo-matching-pairs-board-wrapper ${isGameComplete ? "game-complete" : ""}`}
+    >
+      <AnimatePresence>
+        {isGameComplete ? (
+          <GameSuccess moves={moves} score={score} onRestart={onRestart} />
+        ) : (
+          <>
+            <DetailsPanel
+              key="solo-classic-details-panel"
+              title={GAME_DETAILS.title}
+              gameName={GAME_DETAILS.gameName}
+              description={GAME_DETAILS.description}
+              score={score}
+              movesCount={moves}
+              progress={progress}
+              onRestart={onRestart}
+            />
+            <main className="classic-mode-main-panel">
               <motion.div
-                key={cardId}
-                className="matching-pairs-grid-cell-wrapper"
-                variants={cardVariants}
-                custom={i}
+                className="matching-pairs-grid"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                style={{
+                  gridTemplateColumns: `repeat(${columns}, 1fr)`,
+                  gridTemplateRows: `repeat(${rows}, 1fr)`,
+                }}
               >
-                <GridCard
-                  ref={(cardRef) => {
-                    if (cardsRefs.current && cardRef) {
-                      cardsRefs.current[cardId] = cardRef;
-                    }
-                  }}
-                  className="matching-pairs-grid-cell"
-                  onClick={() => {
-                    onCardClick(cardId);
-                  }}
-                  aria-details={cardId}
-                >
-                  <AnimatePresence>
-                    {cardStatus === CardStatus.HIDDEN && (
-                      <h1 style={{ color: "black" }}>{i + 1}</h1>
-                    )}
-                    {showImage && (
-                      <motion.img
-                        src={cards[cardId].src}
-                        alt="card-image"
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
+                {Object.keys(cards).map((cardId, i) => {
+                  const cardStatus = cards[cardId].status;
+                  const showImage =
+                    cardStatus === CardStatus.SELECTED ||
+                    cardStatus === CardStatus.MATCHED;
+                  return (
+                    <motion.div
+                      key={cardId}
+                      className="matching-pairs-grid-cell-wrapper"
+                      variants={cardVariants}
+                      custom={i}
+                    >
+                      <GridCard
+                        ref={(cardRef) => {
+                          if (cardsRefs.current && cardRef) {
+                            cardsRefs.current[cardId] = cardRef;
+                          }
                         }}
-                        loading="eager"
-                        initial={{ opacity: 0.5, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
-                  </AnimatePresence>
-                </GridCard>
+                        className="matching-pairs-grid-cell"
+                        onClick={() => {
+                          onCardClick(cardId);
+                        }}
+                        aria-details={cardId}
+                      >
+                        <AnimatePresence>
+                          {cardStatus === CardStatus.HIDDEN && (
+                            <h1 style={{ color: "black" }}>{i + 1}</h1>
+                          )}
+                          {showImage && (
+                            <motion.img
+                              src={cards[cardId].src}
+                              alt="card-image"
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                              }}
+                              loading="eager"
+                              initial={{ opacity: 0.5, scale: 0.95 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.95 }}
+                              transition={{ duration: 0.3 }}
+                            />
+                          )}
+                        </AnimatePresence>
+                      </GridCard>
+                    </motion.div>
+                  );
+                })}
               </motion.div>
-            );
-          })}
-        </motion.div>
-      </main>
-    </>
+            </main>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 

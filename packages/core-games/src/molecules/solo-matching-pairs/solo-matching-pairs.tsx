@@ -4,9 +4,22 @@ import { CardSize } from "@/constant/card-size";
 import { CardCategory } from "@/constant/card-category";
 import { Mode } from "@/constant/mode";
 import Loader from "@/atoms/loader";
-const SoloClassicMode = lazy(() => import("./components/solo-classic-mode"));
-const SoloTimeMode = lazy(() => import("./components/solo-time-mode"));
-const SoloZenMode = lazy(() => import("./components/solo-zen-mode"));
+
+const SoloClassicMode = lazy(() =>
+  import("./components/solo-classic-mode").then((module) => ({
+    default: module.default,
+  }))
+);
+const SoloTimeMode = lazy(() =>
+  import("./components/solo-time-mode").then((module) => ({
+    default: module.default,
+  }))
+);
+const SoloZenMode = lazy(() =>
+  import("./components/solo-zen-mode").then((module) => ({
+    default: module.default,
+  }))
+);
 
 export interface SoloMatchingPairsProps {
   cardSize: CardSize;
@@ -14,7 +27,12 @@ export interface SoloMatchingPairsProps {
   mode: Mode;
 }
 
-const SoloModeComponents = {
+const SoloModeComponents: Record<
+  Mode,
+  React.LazyExoticComponent<
+    React.ComponentType<Omit<SoloMatchingPairsProps, "mode">>
+  >
+> = {
   [Mode.CLASSIC]: SoloClassicMode,
   [Mode.TIME]: SoloTimeMode,
   [Mode.ZEN]: SoloZenMode,
