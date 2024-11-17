@@ -191,7 +191,11 @@ export const useSoloClassicMode = ({
 
   const onCardClick = useCallback(
     (cardId: CardId) => {
-      if (isCheckingMatch || cards[cardId].status === CardStatus.MATCHED)
+      if (
+        isCheckingMatch ||
+        cards[cardId].status === CardStatus.MATCHED ||
+        cardId === selectedCardId
+      )
         return;
       incrementMoves();
       if (selectedCardId) {
